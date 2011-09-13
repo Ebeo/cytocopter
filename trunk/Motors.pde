@@ -1,9 +1,3 @@
-/*
-// includes
-#include <avr/io.h>
-#include <stdint.h>
-*/
-
 // prototypes
 void initializeMotors(void);
 void setMotorSpeed(int16_t, uint8_t);
@@ -25,13 +19,6 @@ void initializeMotors(void)
 	pinMode(PWM_PINS[1], OUTPUT);
 	pinMode(PWM_PINS[2], OUTPUT);
 	pinMode(PWM_PINS[3], OUTPUT);
-	
-	/*
-	DDRB |= _BV(1);
-	DDRB |= _BV(2);
-	DDRB |= _BV(3);
-	DDRD |= _BV(3);
-	*/
 	
 	// set min speed
 	setAllMotorSpeed(MINTHROTTLE);
@@ -122,21 +109,4 @@ void writeMotors(void)
 	analogWrite(PWM_PINS[1], motor[1]>>3);
 	analogWrite(PWM_PINS[2], motor[2]>>3);
 	analogWrite(PWM_PINS[3], motor[3]>>3);
-	
-	/*
-	TCCR1A |= _BV(COM1A1);
-	OCR1A = motor[0]>>3;
-	
-	// 
-	TCCR1A |= _BV(COM1B1);
-	OCR1B = motor[1]>>3;
-	
-	// 
-	TCCR2A |= _BV(COM2A1);
-	OCR2A = motor[2]>>3;
-	
-	// 
-	TCCR2A |= _BV(COM2B1);
-	OCR2B = motor[3]>>3;
-	*/
 }
