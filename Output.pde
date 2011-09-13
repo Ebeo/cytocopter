@@ -1,10 +1,10 @@
+// Setzt Motordrehzahl mit RC-Eingabe und Lagekorrektur
+#define PIDMIX(X, Y, Z) command[THROTTLE] + command[ROLL] * X + command[PITCH] * Y + YAW_DIRECTION * command[YAW] * Z
+
 int16_t output[4];
 
 void calculateThrottle(void)
-{	
-  // Setzt Motordrehzahl mit RC-Eingabe und Lagekorrektur
-  #define PIDMIX(X, Y, Z) command[THROTTLE] + command[ROLL] * X + command[PITCH] * Y + YAW_DIRECTION * command[YAW] * Z
-	
+{		
   output[0] = PIDMIX(-1, +1, -1); //REAR_R
   output[1] = PIDMIX(-1, -1, +1); //FRONT_R
   output[2] = PIDMIX(+1, +1, +1); //REAR_L
