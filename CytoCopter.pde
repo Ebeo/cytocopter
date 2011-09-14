@@ -3,7 +3,10 @@
 /**
  *	Variablen
  */
-int16_t	command[4] = {0, 0, 0, 0};
+int16_t	command[4]	 = {0, 0, 0, 0};
+int16_t rcData[8]	 = {0, 0, 0, 0, 0, 0, 0, 0};
+int16_t rcCommand[4] = {0, 0, 0, 0};
+
 
 /**
  *	Initialisiert Quad
@@ -12,11 +15,17 @@ void setup() {
 	// Liesst EEPROM
 	
 	// Initialisiert RC
+	initializeReceiver();
 	
 	// Initialisiert Sensoren
 	
+	// Warte 5 Sekunden
+	delay(5000);
+	
 	// Initialisiert Motoren und prueft vorher, ob Start erlaubt ist
+	initializeMotors();
 }
+
 
 /**
  *	...
@@ -30,9 +39,9 @@ void loop() {
 	 *	Holt RC-Daten
 	 *
 	 *	Liefert:
-	 *		rcValue[ROLL], rcValue[PITCH], rcValue[YAW], rcValue[THROTTLE]
+	 *		rcData[ROLL], rcData[PITCH], rcData[YAW], rcData[THROTTLE]
 	 */	 
-	//getRCValues();
+	getRCData();
 	
 	/**
 	 *	Holt IMU-Daten
@@ -52,7 +61,7 @@ void loop() {
 	 *	Liefert:
 	 *		rcCommand[ROLL], rcCommand[PITCH], rcCommand[YAW], rcCommand[THROTTLE]
 	 */
-	 //checkStickInput();
+	 getStickInput();
 	 
 	/***********************************************************************************
 	 *	Calculation																  	   *
