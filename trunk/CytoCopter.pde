@@ -3,9 +3,19 @@
 /**
  *	Variablen
  */
-int16_t	command[4]	 = {0, 0, 0, 0};
+// input
 int16_t rcData[8]	 = {0, 0, 0, 0, 0, 0, 0, 0};
+int16_t heading = 0;
+int16_t	angle[2] = {0, 0};
+in16_t altitude = 0;
+
+// checks
 int16_t rcCommand[4] = {0, 0, 0, 0};
+
+// calculations
+int16_t	command[4]	 = {0, 0, 0, 0};
+
+
 
 
 /**
@@ -13,17 +23,19 @@ int16_t rcCommand[4] = {0, 0, 0, 0};
  */
 void setup() {
 	// Liesst EEPROM
+	//readEEPROMData();					// EEPROM.pde
 	
 	// Initialisiert RC
-	initializeReceiver();
+	initializeReceiver();				// RC.pde
 	
 	// Initialisiert Sensoren
+	//initializeSensors();				// Sensors.pde
 	
 	// Warte 5 Sekunden
 	delay(5000);
 	
-	// Initialisiert Motoren und prueft vorher, ob Start erlaubt ist
-	initializeMotors();
+	// Startet Motoren
+	initializeMotors();					// Motors.pde
 }
 
 
@@ -41,7 +53,7 @@ void loop() {
 	 *	Liefert:
 	 *		rcData[ROLL], rcData[PITCH], rcData[YAW], rcData[THROTTLE]
 	 */	 
-	getRCData();
+	getRCData();						// RC.pde
 	
 	/**
 	 *	Holt IMU-Daten
@@ -49,7 +61,7 @@ void loop() {
 	 *	Liefert:
 	 *		heading, angle[ROLL], angle[PITCH], altitude
 	 */
-	 //getIMUData();
+	 //getIMUData();					// IMU.pde
 	
 	/***********************************************************************************
 	 *	Checks																  	       *
@@ -61,7 +73,7 @@ void loop() {
 	 *	Liefert:
 	 *		rcCommand[ROLL], rcCommand[PITCH], rcCommand[YAW], rcCommand[THROTTLE]
 	 */
-	 getStickInput();
+	 getStickInput();					// Commands.pde
 	 
 	/***********************************************************************************
 	 *	Calculation																  	   *
@@ -73,7 +85,7 @@ void loop() {
 	 *	Liefert:
 	 *		command[ROLL], command[PITCH], command[YAW], command[THROTTLE]
 	 */
-	//calculateCommands();
+	//calculateCommands();				// Commands.pde
 	 
 	/***********************************************************************************
 	 *	Output																	  	   *
@@ -82,5 +94,5 @@ void loop() {
 	/**
 	 *	Gibt Throttle an Motoren weiter
 	 */
-	outputMotors();	
+	outputMotors();						// Output.pde
 }
