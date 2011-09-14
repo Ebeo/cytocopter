@@ -1,17 +1,15 @@
 /**
  *	Configuration
  */
-#define MINTHROTTLE		1150
-#define	MAXTHROTTLE		2000
-#define MOTORPINS		9, 10, 11, 3
+#define MINTHROTTLE		1150				// minimal throttle
+#define	MAXTHROTTLE		2000				// maximal throttle
+#define MOTORPINS		9, 10, 11, 3		// motor pins
 
+#define MINCOMMAND		1000				// minimal rc throttle command
+#define MAXCOMMAND		2000				// maximal rc throttle command
+#define MIDRC 1500							// rc middle position
 
-#define YAW_DIRECTION	1
-
-
-#define MIDRC 1500
-
-
+#define YAW_DIRECTION	1					// yaw inverted?
 
 
 /**
