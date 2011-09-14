@@ -21,7 +21,10 @@ void initializeMotors(void)
 	pinMode(PWM_PINS[3], OUTPUT);
 	
 	// set min speed
-	setAllMotorSpeed(MINTHROTTLE);
+	motor[0] = MINTHROTTLE;
+	motor[1] = MINTHROTTLE;
+	motor[2] = MINTHROTTLE;
+	motor[3] = MINTHROTTLE;
 	
 	// start engines
 	writeMotors();
@@ -37,20 +40,6 @@ void initializeMotors(void)
 void setMotorSpeed(int16_t speed, uint8_t num)
 {
 	motor[num] = speed;
-}
-
-/**
- *  Sets motor speed for all motors
- *
- *	@param
- *		int16_t speed	motor speed
- */
-void setAllMotorSpeed(int16_t speed)
-{
-	motor[0] = speed;
-	motor[1] = speed;
-	motor[2] = speed;
-	motor[3] = speed;
 }
 
 /**
